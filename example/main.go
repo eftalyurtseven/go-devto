@@ -49,5 +49,5 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("Updated!", updated)
+	fmt.Println("Updated!", updated.Title)
 }
