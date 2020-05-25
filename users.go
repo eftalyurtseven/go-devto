@@ -2,6 +2,7 @@ package devtoclient
 
 import "fmt"
 
+// User struct for server returns.
 type User struct {
 	TypeOf          string      `json:"type_of"`
 	ID              int         `json:"id"`
@@ -16,6 +17,7 @@ type User struct {
 	ProfileImage    string      `json:"profile_image"`
 }
 
+// Follower struct for server returns.
 type Follower struct {
 	TypeOf       string `json:"type_of"`
 	ID           int    `json:"id"`
@@ -25,6 +27,8 @@ type Follower struct {
 	ProfileImage string `json:"profile_image"`
 }
 
+// GetUser method serves get a user with parameters from API
+// example context: "me" || "1"
 func (c *Client) GetUser(ctx string) (User, error) {
 	var user User
 	url := fmt.Sprintf("/users/%s", ctx)
@@ -33,6 +37,7 @@ func (c *Client) GetUser(ctx string) (User, error) {
 	return user, err
 }
 
+// GetFollowers method servers get auth user followers from API
 func (c *Client) GetFollowers() ([]Follower, error) {
 	var followers []Follower
 	url := fmt.Sprintf("/followers/users")

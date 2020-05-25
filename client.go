@@ -10,6 +10,7 @@ import (
 	"time"
 )
 
+// Client struct for defaults
 type Client struct {
 	BaseURL    string
 	Key        string
@@ -17,11 +18,13 @@ type Client struct {
 	RetryCount int
 }
 
+// ClientConfig struct for settings
 type ClientConfig struct {
 	BaseURL string
 	Key     string
 }
 
+// NewClient method create a Client object from Client struct
 func NewClient() *Client {
 	baseURL := os.Getenv("DEVTO_BASE_URL")
 	if baseURL == "" {
@@ -40,6 +43,7 @@ func NewClient() *Client {
 	return &client
 }
 
+// UpdateConfig method create a ClientConfig object if not exists
 func (c *Client) UpdateConfig(config *ClientConfig) {
 	baseURL := config.BaseURL
 	key := config.Key
@@ -51,6 +55,7 @@ func (c *Client) UpdateConfig(config *ClientConfig) {
 	}
 }
 
+// Request and request methods create httpRequest
 func (c *Client) Request(method string, url string, params, result interface{}) (res *http.Response, err error) {
 	for i := 0; i <= c.RetryCount+1; i++ {
 		retryDuration := time.Duration((math.Pow(2, float64(i))-1)/2*1000) * time.Millisecond

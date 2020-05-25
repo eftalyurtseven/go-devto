@@ -2,6 +2,7 @@ package devtoclient
 
 import "fmt"
 
+// Comment struct for API returns
 type Comment struct {
 	TypeOf   string `json:"type_of"`
 	IDCode   string `json:"id_code"`
@@ -32,16 +33,18 @@ type Comment struct {
 	} `json:"children"`
 }
 
-func (c *Client) GetComments(articleId int) ([]Comment, error) {
+// GetComments method serve to get comments for an article
+func (c *Client) GetComments(articleID int) ([]Comment, error) {
 	var comments []Comment
-	url := fmt.Sprintf("/comments?a_id=%d", articleId)
+	url := fmt.Sprintf("/comments?a_id=%d", articleID)
 	_, err := c.Request("GET", url, nil, &comments)
 	return comments, err
 }
 
-func (c *Client) GetComment(commentId string) (Comment, error) {
+// GetComment method serve to get comment for an article
+func (c *Client) GetComment(commentID string) (Comment, error) {
 	var comment Comment
-	url := fmt.Sprintf("/comments/%s", commentId)
+	url := fmt.Sprintf("/comments/%s", commentID)
 	_, err := c.Request("GET", url, nil, &comment)
 	return comment, err
 }
