@@ -82,5 +82,4 @@ func main() {
 		panic(err)
 	}
 	fmt.Println("Single comment -> ", comment.BodyHTML)
-
 }
