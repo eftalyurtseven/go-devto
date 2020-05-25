@@ -70,7 +70,6 @@ GetArticles method serves to get articles from API
 ### GetArticle
 
 ``` go
-    // get specific article //
 	article, err := client.GetArticle(343488)
 	if err != nil {
 		fmt.Println(err)
@@ -81,7 +80,6 @@ GetArticles method serves to get articles from API
 ### AddArticle
 
 ``` go
-    // add an article //
 	data := devtoclient.Article{
 		Title:        "Hello from  go-devto API Client",
 		BodyMarkdown: "Hey, this post published by go-devto API Client cheers!",
@@ -98,7 +96,6 @@ GetArticles method serves to get articles from API
 ### UpdateArticle
 
 ``` go
-	// update an article //
 	updatedData := devtoclient.Article{
 		Title: "Hello from  go-devto API Client Updated!",
 	}
@@ -107,6 +104,50 @@ GetArticles method serves to get articles from API
 		fmt.Println(err)
 	}
 	fmt.Println("Updated!", updated.Title)
+```
+
+### GetUser
+
+``` go
+    user, err := client. GetUser("me") // or you can use client. GetUser(userID string)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(user)
+```
+
+### GetFollowers
+
+``` go
+followers, err := client. GetFollowers()
+	if err != nil {
+		panic(err)
+	}
+	for _, follower := range followers {
+		fmt.Println("Follower Name -> ", follower.Name)
+	}
+```
+
+### GetComments
+
+``` go
+	comments, err := client.GetComments(270180) // ArticleID
+	if err != nil {
+		panic(err)
+	}
+	for _, comment := range comments {
+		fmt.Println("Comment -> ", comment.BodyHTML)
+	}
+```
+
+### GetComment
+
+``` go
+    comment, err := client. GetComment("m51e")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Single comment -> ", comment.BodyHTML)
 ```
 
 ### Data types & structures
