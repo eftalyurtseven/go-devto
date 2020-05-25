@@ -109,6 +109,6 @@ func (c *Client) request(method string, url string, params, result interface{}) 
 			return res, err
 		}
 	}
-
+	fmt.Println(res.StatusCode)
 	return res, nil
 }
