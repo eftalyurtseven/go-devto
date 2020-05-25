@@ -67,15 +67,14 @@ func (c *Client) Request(method string, url string, params, result interface{}) 
 }
 
 func (c *Client) request(method string, url string, params, result interface{}) (res *http.Response, err error) {
-	var data []byte
 	body := bytes.NewReader(make([]byte, 0))
 
 	if params != nil {
-		data, err = json.Marshal(params)
+		payloadBytes, err := json.Marshal(params)
 		if err != nil {
-			return res, err
+			fmt.Println("test", err)
 		}
-		body = bytes.NewReader(data)
+		body = bytes.NewReader(payloadBytes)
 	}
 	fullURL := fmt.Sprintf("%s%s", c.BaseURL, url)
 	req, err := http.NewRequest(method, fullURL, body)
@@ -86,6 +85,7 @@ func (c *Client) request(method string, url string, params, result interface{}) 
 
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/json")
+	req.Header.Set("Api-Key", c.Key)
 	req.Header.Add("User-Agent", "Go Dev.to API Client")
 	res, err = c.HTTPClient.Do(req)
 	if err != nil {
@@ -109,6 +109,5 @@ func (c *Client) request(method string, url string, params, result interface{}) 
 			return res, err
 		}
 	}
-	fmt.Println(res.StatusCode)
 	return res, nil
 }
