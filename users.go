@@ -27,7 +27,8 @@ type Follower struct {
 
 func (c *Client) GetUser(ctx string) (User, error) {
 	var user User
-	url := fmt.Sprintf("/users/&s", ctx)
+	url := fmt.Sprintf("/users/%s", ctx)
+	fmt.Println(url)
 	_, err := c.Request("GET", url, nil, &user)
 	return user, err
 }
