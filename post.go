@@ -45,3 +45,11 @@ func (c *Client) GetPosts() ([]Post, error) {
 	_, err := c.Request("GET", url, nil, &posts)
 	return posts, err
 }
+
+func (c *Client) GetPost(postID int) (Post, error) {
+	var post Post
+	url := fmt.Sprintf("/articles/%d", postID)
+	fmt.Println(url)
+	_, err := c.Request("GET", url, nil, &post)
+	return post, err
+}
