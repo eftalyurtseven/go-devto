@@ -2,7 +2,7 @@
 
 ## Summary
 
-This repo allows easy operation using the dev. to APIs. 
+This repo allows easy operation using the [dev. to](https://dev.to) APIs. 
 
 ## Installation, 
 
